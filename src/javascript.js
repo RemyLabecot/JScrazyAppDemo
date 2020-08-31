@@ -3,7 +3,7 @@ const windowHeight = window.innerHeight;
 let squareSize = 200;
 
 window.onload = () => {
-  let square = generateNewSquare();
+  const square = generateNewSquare();
   document.body.appendChild(square);
 }
 
@@ -56,7 +56,7 @@ const randomizeColor = () => {
 
 const activateCrazyMode = () => {
 
-    let elements = document.getElementsByClassName('square');
+    const elements = document.getElementsByClassName('square');
     for (let element of elements) {
         element.style.top = getRandomSize(0, windowHeight, Math.random()) + 'px';
         element.style.left = getRandomSize(0, windowWidth, Math.random()) + 'px';
