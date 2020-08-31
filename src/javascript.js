@@ -1,6 +1,6 @@
-const getRandomSize = (min, max) => {
+const getRandomSize = (min, max, randomFactor) => {
 
-    return Math.random() * (max - min) + min;
+    return randomFactor * (max - min) + min;
 }
 
 const randomizeColor = () => {
@@ -18,18 +18,10 @@ const randomizeColor = () => {
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 let squareSize = 200;
+let square = generateNewSquare();
 
-window.onload = () => {
-    
-    const baseSquare = document.querySelector('.square');
-    const randomBaseSquareTop = getRandomSize(0, windowHeight);
-    const randomBaseSquareLeft = getRandomSize(0, windowWidth);
-
-    baseSquare.style.top = randomBaseSquareTop + 'px';
-    baseSquare.style.left = randomBaseSquareLeft + 'px';
-    baseSquare.style.height = squareSize + 'px';
-    baseSquare.style.width = squareSize + 'px';
-    baseSquare.style.backgroundColor = randomizeColor();
+window.onload = () => { 
+  document.body.appendChild(square);
 }
 
 const splitSquareOnClick = () => {
@@ -43,8 +35,8 @@ const splitSquareOnClick = () => {
 }
 
 const generateNewSquare = () => {
-    const randomTop = getRandomSize(0, windowHeight);
-    const randomLeft = getRandomSize(0, windowWidth);
+    const randomTop = getRandomSize(0, windowHeight, Math.random());
+    const randomLeft = getRandomSize(0, windowWidth, Math.random());
     const newSquare = document.createElement('div');
     newSquare.setAttribute('class', 'square');
     newSquare.setAttribute("onclick","splitSquareOnClick();");
