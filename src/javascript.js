@@ -31,8 +31,8 @@ const generateNewSquare = () => {
 
     newSquare.style.width = newSize + 'px';
     newSquare.style.height = newSize + 'px';
-    newSquare.style.top = getRandomSize(newSize, windowHeight, Math.random()) + 'px';
-    newSquare.style.left = getRandomSize(newSize, windowWidth, Math.random()) + 'px';
+    newSquare.style.top = getRandomSize(squareSize, windowHeight, Math.random()) + 'px';
+    newSquare.style.left = getRandomSize(squareSize, windowWidth, Math.random()) + 'px';
     newSquare.style.backgroundColor = randomizeColor();
 
     return newSquare;
@@ -58,8 +58,9 @@ const activateCrazyMode = () => {
 
     const elements = document.getElementsByClassName('square');
     for (let element of elements) {
-        element.style.top = getRandomSize(1, windowHeight, Math.random()) + 'px';
-        element.style.left = getRandomSize(1, windowWidth, Math.random()) + 'px';
+        console.log(element);
+        element.style.top = getRandomSize(squareSize, windowHeight, Math.random()) + 'px';
+        element.style.left = getRandomSize(squareSize, windowWidth, Math.random()) + 'px';
     }
     setTimeout(() => {
         activateCrazyMode();
