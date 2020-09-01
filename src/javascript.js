@@ -1,15 +1,21 @@
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 let squareSize = 200;
+let crazyMode;
 
 window.onload = () => {
   const square = generateNewSquare();
   document.body.appendChild(square);
-}
+};
 
 window.ondblclick = () => {
-    activateCrazyMode();
-}
+
+    if (crazyMode > 0) {
+        clearTimeout(crazyMode);
+    } else {
+        activateCrazyMode();
+    }
+};
 
 const splitSquareOnClick = () => {
 
@@ -19,7 +25,7 @@ const splitSquareOnClick = () => {
         const newSquare = generateNewSquare();
         document.body.appendChild(newSquare);
     }
-}
+};
 
 const generateNewSquare = () => {
     
@@ -27,7 +33,7 @@ const generateNewSquare = () => {
     const newSize = squareSize;
 
     newSquare.setAttribute('class', 'square');
-    newSquare.setAttribute("onclick","splitSquareOnClick();");
+    newSquare.onclick = splitSquareOnClick;
 
     newSquare.style.width = newSize + 'px';
     newSquare.style.height = newSize + 'px';
@@ -36,12 +42,13 @@ const generateNewSquare = () => {
     newSquare.style.backgroundColor = randomizeColor();
 
     return newSquare;
-}
+};
 
-const getRandomSize = (min, max, randomFactor) => {
+const getRandomSize = (squareSize, max, randomFactor) => {
 
-    return randomFactor * (max - min) + min;
-}
+    const calcul = (randomFactor *  max);
+    return  calcul > squareSize ? calcul - squareSize : calcul;
+};
 
 const randomizeColor = () => {
 
@@ -52,17 +59,15 @@ const randomizeColor = () => {
         hexaColor += hexaChar[Math.floor(Math.random() * 16)];
     }
     return hexaColor;
-}
+};
 
 const activateCrazyMode = () => {
-
     const elements = document.getElementsByClassName('square');
     for (let element of elements) {
-        console.log(element);
-        element.style.top = getRandomSize(squareSize, windowHeight, Math.random()) + 'px';
-        element.style.left = getRandomSize(squareSize, windowWidth, Math.random()) + 'px';
+        element.style.top = getRandomSize(element.style.height, windowHeight, Math.random()) + 'px';
+        element.style.left = getRandomSize(element.style.width, windowWidth, Math.random()) + 'px';
     }
-    setTimeout(() => {
+     crazyMode = setTimeout(() => {
         activateCrazyMode();
     }, 2000);
-}
+};
