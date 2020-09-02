@@ -16,9 +16,9 @@ const generateRandomSquarePosition = (squareSize, randomFactor, windowHeight, wi
     return [distanceOfTop, distanceOfLeft];
 };
 
-const splitSquareSize = (id) => {
+const splitSquareSize = (square) => {
 
-    const squareSize = getSquareById(id).offsetHeight / 2;
+    const squareSize square.offsetHeight / 2;
     return squareSize + 'px';
 };
 
