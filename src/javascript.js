@@ -47,8 +47,8 @@ const generateNewSquare = () => {
 
 const getRandomSize = (squareSize, max, randomFactor) => {
 
-    const calcul = (randomFactor *  max);
-    return  calcul > squareSize ? calcul - squareSize : calcul;
+    const randomPosition = (randomFactor *  max);
+    return  randomPosition > squareSize ? randomPosition - squareSize : randomPosition;
 };
 
 const randomizeColor = () => {
