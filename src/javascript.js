@@ -12,6 +12,7 @@ window.ondblclick = () => {
 
     if (crazyMode > 0) {
         clearTimeout(crazyMode);
+        crazyMode = 0;
     } else {
         activateCrazyMode();
     }
