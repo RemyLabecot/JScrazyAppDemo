@@ -8,12 +8,20 @@ window.onload = () => {
 
 window.ondblclick = () => {
 
-    if (crazyModeSetTimeoutIdentifier > 0) {
-        clearTimeout(crazyModeSetTimeoutIdentifier);
-        crazyModeSetTimeoutIdentifier = 0;
+    if(shouldGoIntoCrazyMode()) {
+        resetCrazyMode();
     } else {
         activateCrazyMode();
     }
+};
+
+const shouldGoIntoCrazyMode = () => {
+    return crazyModeSetTimeoutIdentifier > 0;
+};
+
+const resetCrazyMode = () => {
+    clearTimeout(crazyModeSetTimeoutIdentifier);
+    crazyModeSetTimeoutIdentifier = 0;
 };
 
 const split = (event) => {
