@@ -1,4 +1,4 @@
-let crazyMode;
+let crazyModeSetTimeoutIdentifier;
 
 window.onload = () => {
 
@@ -8,9 +8,9 @@ window.onload = () => {
 
 window.ondblclick = () => {
 
-    if (crazyMode > 0) {
-        clearTimeout(crazyMode);
-        crazyMode = 0;
+    if (crazyModeSetTimeoutIdentifier > 0) {
+        clearTimeout(crazyModeSetTimeoutIdentifier);
+        crazyModeSetTimeoutIdentifier = 0;
     } else {
         activateCrazyMode();
     }
@@ -65,7 +65,7 @@ const activateCrazyMode = () => {
         element.style.top = generateRandomSquarePosition(element.offsetHeight, Math.random(), window.innerHeight, window.innerWidth)[0] + 'px';
         element.style.left = generateRandomSquarePosition(element.offsetWidth, Math.random(), window.innerHeight, window.innerWidth)[1] + 'px';
     }
-    crazyMode = setTimeout(() => {
+    crazyModeSetTimeoutIdentifier = setTimeout(() => {
         activateCrazyMode();
     }, 2000);
 };
