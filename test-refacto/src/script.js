@@ -37,10 +37,9 @@ const split = (event) => {
 const generateNewSquare = (squareSize, id) => {
 
     const newSquare = document.createElement('div');
-    const position = generateRandomSquarePosition(squareSize, Math.random(), window.innerHeight, window.innerWidth);
     newSquare.setAttribute('class', 'square');
-    newSquare.style.top = position[0] + 'px';
-    newSquare.style.left = position[1] + 'px';
+    newSquare.style.top = generateRandomSize(squareSize, Math.random(), window.innerHeight) + 'px';
+    newSquare.style.left = generateRandomSize(squareSize, Math.random(), window.innerWidth) + 'px';
     newSquare.style.width = squareSize + 'px';
     newSquare.style.height = squareSize + 'px';
     newSquare.style.backgroundColor = randomizeColor();
@@ -60,20 +59,18 @@ const randomizeColor = () => {
     return hexaColor;
 };
 
-const generateRandomSquarePosition = (squareSize, randomFactor, windowHeight, windowWidth) => {
-    const distanceOfTop = (windowHeight - squareSize) * randomFactor;
-    const distanceOfLeft = (windowWidth - squareSize) * randomFactor;
-    return [distanceOfTop, distanceOfLeft];
+const generateRandomSize = (squareSize, randomFactor, windowSize) => {
+    return (windowSize - squareSize) * randomFactor;
 };
 
 const activateCrazyMode = () => {
 
     const elements = document.getElementsByClassName('square');
     for (let element of elements) {
-        element.style.top = generateRandomSquarePosition(element.offsetHeight, Math.random(), window.innerHeight, window.innerWidth)[0] + 'px';
-        element.style.left = generateRandomSquarePosition(element.offsetWidth, Math.random(), window.innerHeight, window.innerWidth)[1] + 'px';
+        element.style.top = generateRandomSize(element.offsetHeight, Math.random(), window.innerHeight) + 'px';
+        element.style.left = generateRandomSize(element.offsetWidth, Math.random(), window.innerWidth) + 'px';
     }
-    crazyModeSetTimeoutIdentifier = setTimeout(() => {
+    crazyModeSetTimeoutIdentifier = setInterval(() => {
         activateCrazyMode();
     }, 2000);
 };
